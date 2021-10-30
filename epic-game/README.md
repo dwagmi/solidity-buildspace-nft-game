@@ -16,5 +16,10 @@ npx hardhat help
 
 ```
 npx hardhat run scripts/run.js
-
+npx hardhat run scripts/deploy.js --network rinkeby
 ```
+
+# Links
+[Buildspace](https://app.buildspace.so/courses/)
+[Alchemy Dashboard](https://dashboard.alchemyapi.io/)
+[Rinkeby Etherscan](https://rinkeby.etherscan.io/)
