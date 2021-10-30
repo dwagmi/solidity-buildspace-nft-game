@@ -23,3 +23,4 @@ npx hardhat run scripts/deploy.js --network rinkeby
 [Buildspace](https://app.buildspace.so/courses/)
 [Alchemy Dashboard](https://dashboard.alchemyapi.io/)
 [Rinkeby Etherscan](https://rinkeby.etherscan.io/)
+[OpenSea Testnets](https://testnets.opensea.io/)
