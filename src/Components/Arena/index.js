@@ -12,6 +12,9 @@ const Arena = ({ characterNFT }) => {
     const [gameContract, setGameContract] = useState(null);
     const [boss, setBoss] = useState(null);
 
+    // Actions
+    const runAttackAction = async () => { };
+
     // UseEffects
     useEffect(() => {
         const { ethereum } = window;
@@ -42,8 +45,26 @@ const Arena = ({ characterNFT }) => {
 
     return (
         <div className="arena-container">
-            {/* Boss */}
-            <p>BOSS GOES HERE</p>
+            {/* Replace your Boss UI with this */}
+            {boss && (
+                <div className="boss-container">
+                    <div className={`boss-content`}>
+                        <h2>🔥 {boss.name} 🔥</h2>
+                        <div className="image-content">
+                            <img src={boss.imageURI} alt={`Boss ${boss.name}`} />
+                            <div className="health-bar">
+                                <progress value={boss.hp} max={boss.maxHp} />
+                                <p>{`${boss.hp} / ${boss.maxHp} HP`}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="attack-container">
+                        <button className="cta-button" onClick={runAttackAction}>
+                            {`💥 Attack ${boss.name}`}
+                        </button>
+                    </div>
+                </div>
+            )}
 
             {/* Character NFT */}
             <p>CHARACTER NFT GOES HERE</p>
