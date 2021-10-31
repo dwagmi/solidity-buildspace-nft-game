@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { CONTRACT_ADDRESS } from './constants';
+import myEpicGame from './utils/MyEpicGame.json';
 import './App.css';
 import SelectCharacter from './Components/SelectCharacter';
 import twitterLogo from './assets/twitter-logo.svg';
