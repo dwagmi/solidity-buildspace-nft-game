@@ -10,11 +10,11 @@ import './Arena.css';
 const Arena = ({ characterNFT }) => {
     // State
     const [gameContract, setGameContract] = useState(null);
+    const [boss, setBoss] = useState(null);
 
     // UseEffects
     useEffect(() => {
         const { ethereum } = window;
-
         if (ethereum) {
             const provider = new ethers.providers.Web3Provider(ethereum);
             const signer = provider.getSigner();
@@ -23,12 +23,22 @@ const Arena = ({ characterNFT }) => {
                 myEpicGame.abi,
                 signer
             );
-
             setGameContract(gameContract);
         } else {
             console.log('Ethereum object not found');
         }
     }, []);
+
+    useEffect(() => {
+        const fetchBoss = async () => {
+            const bossTxn = await gameContract.getBigBoss();
+            console.log('Boss:', bossTxn);
+            setBoss(transformCharacterData(bossTxn));
+        };
+        if (gameContract) {
+            fetchBoss();
+        }
+    }, [gameContract]);
 
     return (
         <div className="arena-container">
