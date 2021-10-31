@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { CONTRACT_ADDRESS } from './constants';
 import './App.css';
 import SelectCharacter from './Components/SelectCharacter';
 import twitterLogo from './assets/twitter-logo.svg';
