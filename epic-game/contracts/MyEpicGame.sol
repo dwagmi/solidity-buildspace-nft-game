@@ -178,6 +178,7 @@ contract MyEpicGame is ERC721 {
             player.hp = player.hp - bigBoss.attackDamage;
         }
         console.log("Boss attacked player. New player hp: %s\n", player.hp);
+        emit AttackComplete(bigBoss.hp, player.hp);
     }
 
     function checkIfUserHasNFT()
