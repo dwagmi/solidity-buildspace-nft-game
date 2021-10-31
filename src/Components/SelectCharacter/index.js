@@ -55,9 +55,27 @@ const SelectCharacter = ({ setCharacterNFT }) => {
                 console.error('Something went wrong fetching characters:', error);
             }
         };
+        // Callback on event
+        const onCharacterMint = async (sender, tokenId, characterIndex) => {
+            console.log(
+                `CharacterNFTMinted - sender: ${sender} tokenId: ${tokenId.toNumber()} characterIndex: ${characterIndex.toNumber()}`
+            );
+            if (gameContract) {
+                const characterNFT = await gameContract.checkIfUserHasNFT();
+                console.log('CharacterNFT: ', characterNFT);
+                setCharacterNFT(transformCharacterData(characterNFT));
+            }
+        };
         if (gameContract) {
             getCharacters();
+            gameContract.on('CharacterNFTMinted', onCharacterMint);
         }
+        return () => {
+            // dispose listener
+            if (gameContract) {
+                gameContract.off('CharacterNFTMinted', onCharacterMint);
+            }
+        };
     }, [gameContract]);
 
     // Render Methods
