@@ -26,6 +26,26 @@ const SelectCharacter = ({ setCharacterNFT }) => {
             console.log('Ethereum object not found');
         }
     }, []);
+
+    useEffect(() => {
+        const getCharacters = async () => {
+            try {
+                console.log('Getting contract characters to mint');
+                const charactersTxn = await gameContract.getAllDefaultCharacters();
+                console.log('charactersTxn:', charactersTxn);
+                const characters = charactersTxn.map((characterData) =>
+                    transformCharacterData(characterData)
+                );
+                setCharacters(characters);
+            } catch (error) {
+                console.error('Something went wrong fetching characters:', error);
+            }
+        };
+        if (gameContract) {
+            getCharacters();
+        }
+    }, [gameContract]);
+
     return (
         <div className="select-character-container">
             <h2>Mint Your Hero. Choose wisely.</h2>
