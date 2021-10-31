@@ -11,6 +11,20 @@ const SelectCharacter = ({ setCharacterNFT }) => {
     const [characters, setCharacters] = useState([]);
     const [gameContract, setGameContract] = useState(null);
 
+    // Actions
+    const mintCharacterNFTAction = (characterId) => async () => {
+        try {
+            if (gameContract) {
+                console.log('Minting character in progress...');
+                const mintTxn = await gameContract.mintCharacterNFT(characterId);
+                await mintTxn.wait();
+                console.log('mintTxn:', mintTxn);
+            }
+        } catch (error) {
+            console.warn('MintCharacterAction Error:', error);
+        }
+    };
+
     useEffect(() => {
         const { ethereum } = window;
         if (ethereum) {
@@ -57,7 +71,7 @@ const SelectCharacter = ({ setCharacterNFT }) => {
                 <button
                     type="button"
                     className="character-mint-button"
-                // onClick={mintCharacterNFTAction(index)}
+                    onClick={mintCharacterNFTAction(index)}
                 >{`Mint ${character.name}`}</button>
             </div>
         ));
