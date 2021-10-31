@@ -55,7 +55,7 @@ const SelectCharacter = ({ setCharacterNFT }) => {
                 console.error('Something went wrong fetching characters:', error);
             }
         };
-        // Callback on event
+        // Callback on event that sets state
         const onCharacterMint = async (sender, tokenId, characterIndex) => {
             console.log(
                 `CharacterNFTMinted - sender: ${sender} tokenId: ${tokenId.toNumber()} characterIndex: ${characterIndex.toNumber()}`
@@ -64,6 +64,7 @@ const SelectCharacter = ({ setCharacterNFT }) => {
                 const characterNFT = await gameContract.checkIfUserHasNFT();
                 console.log('CharacterNFT: ', characterNFT);
                 setCharacterNFT(transformCharacterData(characterNFT));
+                alert(`Your NFT is all done -- see it here: https://testnets.opensea.io/assets/${gameContract.CONTRACT_ADDRESS}/${tokenId.toNumber()}`)
             }
         };
         if (gameContract) {
