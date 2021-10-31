@@ -11,9 +11,24 @@ const Arena = ({ characterNFT }) => {
     // State
     const [gameContract, setGameContract] = useState(null);
     const [boss, setBoss] = useState(null);
+    const [attackState, setAttackState] = useState('');
 
     // Actions
-    const runAttackAction = async () => { };
+    const runAttackAction = async () => {
+        try {
+            if (gameContract) {
+                setAttackState('attacking');
+                console.log('Attacking boss...');
+                const attackTxn = await gameContract.attackBoss();
+                await attackTxn.wait();
+                console.log('attackTxn:', attackTxn);
+                setAttackState('hit');
+            }
+        } catch (error) {
+            console.error('Error attacking boss:', error);
+            setAttackState('');
+        }
+    };
 
     // UseEffects
     useEffect(() => {
