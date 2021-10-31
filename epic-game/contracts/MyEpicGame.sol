@@ -31,6 +31,12 @@ contract MyEpicGame is ERC721 {
     CharacterAttributes[] defaultCharacters;
     mapping(address => uint256) public nftHolders;
     mapping(uint256 => CharacterAttributes) public nftHolderAttributes;
+    event CharacterNFTMinted(
+        address sender,
+        uint256 tokenId,
+        uint256 characterIndex
+    );
+    event AttackComplete(uint256 newBossHp, uint256 newPlayerHp);
 
     constructor(
         string[] memory characterNames,
@@ -96,6 +102,7 @@ contract MyEpicGame is ERC721 {
         );
         nftHolders[msg.sender] = newItemId;
         _tokenIds.increment();
+        emit CharacterNFTMinted(msg.sender, newItemId, _characterIndex);
     }
 
     function tokenURI(uint256 _tokenId)
@@ -189,5 +196,9 @@ contract MyEpicGame is ERC721 {
             CharacterAttributes memory emptyStruct;
             return emptyStruct;
         }
+    }
+
+    function getBigBoss() public view returns (BigBoss memory) {
+        return bigBoss;
     }
 }
