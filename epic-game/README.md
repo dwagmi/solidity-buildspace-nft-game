@@ -23,4 +23,5 @@ npx hardhat run scripts/deploy.js --network rinkeby
 [Buildspace](https://app.buildspace.so/courses/)
 [Alchemy Dashboard](https://dashboard.alchemyapi.io/)
 [Rinkeby Etherscan](https://rinkeby.etherscan.io/)
-[OpenSea Testnets](https://testnets.opensea.io/)
+[OpenSea Rinkeby Testnet](https://testnets.opensea.io/)
+[Rarible Rinkeby Testnet](https://rinkeby.rarible.com/token/INSERT_DEPLOY_CONTRACT_ADDRESS_HERE:INSERT_TOKEN_ID_HERE)
