@@ -77,7 +77,7 @@ const SelectCharacter = ({ setCharacterNFT }) => {
                 gameContract.off('CharacterNFTMinted', onCharacterMint);
             }
         };
-    }, [gameContract]);
+    }, [gameContract, setCharacterNFT]);
 
     // Render Methods
     const renderCharacters = () =>
